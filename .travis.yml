@@ -6,7 +6,7 @@ script:
   - make build
 
 after_script:
-  - sudo chown -R travis dist
+  - sudo chown -R travis build
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
       make release USER_NAME=deploy-travis USER_EMAIL=deploy-travis;
     fi'
