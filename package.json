@@ -5,18 +5,19 @@
     },
     "scripts": {
         "build": "gulp",
-        "serve": "gulp serve"
+        "serve": "gulp serve",
+        "webpack": "webpack --help"
     },
     "devDependencies": {
         "babel-core": "^6.4.0",
         "babel-preset-es2015": "^6.3.13",
         "babel-register": "^6.5.2",
+        "babel-loader": "7.0.0",
         "browser-sync": "^2.2.1",
         "del": "^2.2.0",
         "foundation-sites": ">= 6.3.1",
         "gulp": "^3.9.0",
         "gulp-autoprefixer": "^3.0.1",
-        "gulp-babel": "^6.1.1",
         "gulp-cache": "^0.4.2",
         "gulp-cssnano": "^2.0.0",
         "gulp-eslint": "^3.0.0",
@@ -29,8 +30,11 @@
         "gulp-sourcemaps": "^2.2.0",
         "gulp-uglify": "^2.0.0",
         "gulp-useref": "^3.0.0",
-        "jquery": ">= 2.2.0",
-        "run-sequence": "^1.2.2"
+        "jquery": "=2.2.0",
+        "script-loader": "v0.7.0",
+        "webpack": "=2.5.0",
+        "webpack-stream": "=3.2.0",
+        "run-sequence": "=1.2.2"
     },
     "eslintConfig": {
         "env": {

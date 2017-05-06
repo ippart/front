@@ -1,6 +1,12 @@
 @import "foundation-sites/scss/foundation";
 @include foundation-everything();
 
+@import "settings";
+
 .logo {
     height: 6rem;
+}
+
+.uppercase {
+    text-transform: uppercase;
 }

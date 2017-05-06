@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const del = require('del');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
 const runSequence = require('run-sequence');
 
 const $ = gulpLoadPlugins();
@@ -25,6 +27,14 @@ gulp.task('styles', () => {
 });
 
 gulp.task('scripts', () => {
+    return gulp.src('src/scripts/**/*.js')
+        .pipe($.plumber())
+        .pipe(webpackStream(require('./webpack.js'), webpack))
+        .pipe(gulp.dest('.tmp/scripts'))
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('scripts:lib', () => {
     return gulp.src('src/scripts/**/*.js')
         .pipe($.plumber())
         .pipe($.if(dev, $.sourcemaps.init()))
@@ -125,7 +135,6 @@ gulp.task('serve:test', ['scripts'], () => {
             baseDir: 'test',
             routes: {
                 '/scripts': '.tmp/scripts',
-                '/bower_components': 'bower_components'
             }
         }
     });

@@ -45,23 +45,77 @@
         </div>
     </div>
 </header>
+
 <section class="main">
     <div class="row">
         <div class="large-3 columns">
-            Categories
+            <ul class="vertical menu accordion-menu" data-accordion-menu>
+                <li>
+                    <a href="#">Item 1</a>
+                    <ul class="menu vertical nested">
+                        <li><a href="#">Item 1A</a></li>
+                        <li><a href="#">Item 1B</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Item 2</a></li>
+            </ul>
         </div>
         <div class="large-9 columns">
-            <section class="slider">
-                Slider
+            <section class="banner">
+                Orbit
             </section>
-
-            Content
+            <section class="info">
+                <div class="row">
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded">Learn More</a>
+                    </div>
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded">Learn More</a>
+                    </div>
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded">Learn More</a>
+                    </div>
+                </div>
+                Min sum order
+            </section>
+            <section class="products">
+                <header class="text-center">
+                    <h1 class="uppercase">Новые поступления</h1>
+                </header>
+                <section class="hor-scroll">Scroller</section>
+                <section class="row">
+                    <div class="large-4 columns">
+                        <div class="card">
+                            <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
+                            <div class="card-section">
+                                <h4><a href="#">This is a card.</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-4 columns">
+                        <div class="card">
+                            <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
+                            <div class="card-section">
+                                <h4><a href="#">This is a card.</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-4 columns">
+                        <div class="card">
+                            <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
+                            <div class="card-section">
+                                <h4><a href="#">This is a card.</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="text-center">
+                    <a href="about.html" class="button secondary">Весь каталог продукции</a>
+                </section>
+            </section>
         </div>
     </div>
 </section>
-
-
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="scripts/main.js"></script>
+<script src="scripts/bundle.js"></script>
 </body>
 </html>
