@@ -1,8 +1,5 @@
-.DS_Store
 node_modules
-npm-debug.log
+dist
+.tmp
 bower_components
-build
-.sass-cache
-.idea
-etc
+test/bower_components

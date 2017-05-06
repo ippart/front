@@ -1,178 +1,177 @@
-// FOUNDATION FOR APPS TEMPLATE GULPFILE
-// -------------------------------------
-// This file processes all of the assets in the "src" folder, combines them with the Foundation for Apps assets, and outputs the finished files in the "build" folder as a finished app.
+// generated on 2017-05-06 using generator-webapp 2.4.1
+const gulp = require('gulp');
+const gulpLoadPlugins = require('gulp-load-plugins');
+const browserSync = require('browser-sync').create();
+const del = require('del');
+const wiredep = require('wiredep').stream;
+const runSequence = require('run-sequence');
 
-// 1. LIBRARIES
-// - - - - - - - - - - - - - - -
+const $ = gulpLoadPlugins();
+const reload = browserSync.reload;
 
-var $        = require('gulp-load-plugins')();
-var argv     = require('yargs').argv;
-var gulp     = require('gulp');
-var rimraf   = require('rimraf');
-var router   = require('front-router');
-var sequence = require('run-sequence');
+var dev = true;
 
-// Check for --production flag
-var isProduction = !!(argv.production);
+gulp.task('styles', () => {
+  return gulp.src('app/styles/*.scss')
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.sass.sync({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: ['.']
+    }).on('error', $.sass.logError))
+    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+    .pipe($.if(dev, $.sourcemaps.write()))
+    .pipe(gulp.dest('.tmp/styles'))
+    .pipe(reload({stream: true}));
+});
 
-// 2. FILE PATHS
-// - - - - - - - - - - - - - - -
+gulp.task('scripts', () => {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe($.plumber())
+    .pipe($.if(dev, $.sourcemaps.init()))
+    .pipe($.babel())
+    .pipe($.if(dev, $.sourcemaps.write('.')))
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(reload({stream: true}));
+});
 
-var paths = {
-  assets: [
-    './src/**/*.*',
-    '!./src/templates/**/*.*',
-    '!./src/assets/{scss,js}/**/*.*'
-  ],
-  // Sass will check these folders for files when you use @import.
-  sass: [
-    'src/assets/scss',
-    'bower_components/foundation-apps/scss'
-  ],
-  // These files include Foundation for Apps and its dependencies
-  foundationJS: [
-    'bower_components/fastclick/lib/fastclick.js',
-    'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
-    'bower_components/tether/tether.js',
-    'bower_components/hammerjs/hammer.js',
-    'bower_components/angular/angular.js',
-    'bower_components/angular-animate/angular-animate.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js',
-    'bower_components/foundation-apps/js/vendor/**/*.js',
-    'bower_components/foundation-apps/js/angular/**/*.js',
-    '!bower_components/foundation-apps/js/angular/app.js'
-  ],
-  // These files are for your app's JavaScript
-  appJS: [
-    'src/assets/js/app.js'
-  ]
+function lint(files) {
+  return gulp.src(files)
+    .pipe($.eslint({ fix: true }))
+    .pipe(reload({stream: true, once: true}))
+    .pipe($.eslint.format())
+    .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
 }
 
-// 3. TASKS
-// - - - - - - - - - - - - - - -
-
-// Cleans the build directory
-gulp.task('clean', function(cb) {
-  rimraf('./build', cb);
+gulp.task('lint', () => {
+  return lint('app/scripts/**/*.js')
+    .pipe(gulp.dest('app/scripts'));
+});
+gulp.task('lint:test', () => {
+  return lint('test/spec/**/*.js')
+    .pipe(gulp.dest('test/spec'));
 });
 
-// Copies everything in the src folder except templates, Sass, and JS
-gulp.task('copy', function() {
-  return gulp.src(paths.assets, {
-    base: './src/'
-  })
-    .pipe(gulp.dest('./build'))
-  ;
+gulp.task('html', ['styles', 'scripts'], () => {
+  return gulp.src('app/*.html')
+    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
+    .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
+    .pipe($.if(/\.html$/, $.htmlmin({
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: {compress: {drop_console: true}},
+      processConditionalComments: true,
+      removeComments: true,
+      removeEmptyAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true
+    })))
+    .pipe(gulp.dest('dist'));
 });
 
-// Copies your app's page templates and generates URLs for them
-gulp.task('copy:templates', function() {
-  return gulp.src('./src/templates/**/*.html')
-    .pipe(router({
-      path: 'build/assets/js/routes.js',
-      root: 'src'
+gulp.task('images', () => {
+  return gulp.src('app/images/**/*')
+    .pipe($.cache($.imagemin()))
+    .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('fonts', () => {
+  return gulp.src(require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function (err) {})
+    .concat('app/fonts/**/*'))
+    .pipe($.if(dev, gulp.dest('.tmp/fonts'), gulp.dest('dist/fonts')));
+});
+
+gulp.task('extras', () => {
+  return gulp.src([
+    'app/*',
+    '!app/*.html'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist'));
+});
+
+gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+
+gulp.task('serve', () => {
+  runSequence(['clean', 'wiredep'], ['styles', 'scripts', 'fonts'], () => {
+    browserSync.init({
+      notify: false,
+      port: 9000,
+      server: {
+        baseDir: ['.tmp', 'app'],
+        routes: {
+          '/bower_components': 'bower_components'
+        }
+      }
+    });
+
+    gulp.watch([
+      'app/*.html',
+      'app/images/**/*',
+      '.tmp/fonts/**/*'
+    ]).on('change', reload);
+
+    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch('app/fonts/**/*', ['fonts']);
+    gulp.watch('bower.json', ['wiredep', 'fonts']);
+  });
+});
+
+gulp.task('serve:dist', ['default'], () => {
+  browserSync.init({
+    notify: false,
+    port: 9000,
+    server: {
+      baseDir: ['dist']
+    }
+  });
+});
+
+gulp.task('serve:test', ['scripts'], () => {
+  browserSync.init({
+    notify: false,
+    port: 9000,
+    ui: false,
+    server: {
+      baseDir: 'test',
+      routes: {
+        '/scripts': '.tmp/scripts',
+        '/bower_components': 'bower_components'
+      }
+    }
+  });
+
+  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch(['test/spec/**/*.js', 'test/index.html']).on('change', reload);
+  gulp.watch('test/spec/**/*.js', ['lint:test']);
+});
+
+// inject bower components
+gulp.task('wiredep', () => {
+  gulp.src('app/styles/*.scss')
+    .pipe($.filter(file => file.stat && file.stat.size))
+    .pipe(wiredep({
+      ignorePath: /^(\.\.\/)+/
     }))
-    .pipe(gulp.dest('./build/templates'))
-  ;
-});
+    .pipe(gulp.dest('app/styles'));
 
-// Compiles the Foundation for Apps directive partials into a single JavaScript file
-gulp.task('copy:foundation', function(cb) {
-  gulp.src('bower_components/foundation-apps/js/angular/components/**/*.html')
-    .pipe($.ngHtml2js({
-      prefix: 'components/',
-      moduleName: 'foundation',
-      declareModule: false
+  gulp.src('app/*.html')
+    .pipe(wiredep({
+      ignorePath: /^(\.\.\/)*\.\./
     }))
-    .pipe($.uglify())
-    .pipe($.concat('templates.js'))
-    .pipe(gulp.dest('./build/assets/js'))
-  ;
-
-  // Iconic SVG icons
-  gulp.src('./bower_components/foundation-apps/iconic/**/*')
-    .pipe(gulp.dest('./build/assets/img/iconic/'))
-  ;
-
-  cb();
+    .pipe(gulp.dest('app'));
 });
 
-// Compiles Sass
-gulp.task('sass', function () {
-  var minifyCss = $.if(isProduction, $.minifyCss());
-
-  return gulp.src('src/assets/scss/app.scss')
-    .pipe($.sass({
-      includePaths: paths.sass,
-      outputStyle: (isProduction ? 'compressed' : 'nested'),
-      errLogToConsole: true
-    }))
-    .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie 10']
-    }))
-    .pipe(minifyCss)
-    .pipe(gulp.dest('./build/assets/css/'))
-  ;
+gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
-// Compiles and copies the Foundation for Apps JavaScript, as well as your app's custom JS
-gulp.task('uglify', ['uglify:foundation', 'uglify:app'])
-
-gulp.task('uglify:foundation', function(cb) {
-  var uglify = $.if(isProduction, $.uglify()
-    .on('error', function (e) {
-      console.log(e);
-    }));
-
-  return gulp.src(paths.foundationJS)
-    .pipe(uglify)
-    .pipe($.concat('foundation.js'))
-    .pipe(gulp.dest('./build/assets/js/'))
-  ;
-});
-
-gulp.task('uglify:app', function() {
-  var uglify = $.if(isProduction, $.uglify()
-    .on('error', function (e) {
-      console.log(e);
-    }));
-
-  return gulp.src(paths.appJS)
-    .pipe(uglify)
-    .pipe($.concat('app.js'))
-    .pipe(gulp.dest('./build/assets/js/'))
-  ;
-});
-
-// Starts a test server, which you can view at http://localhost:8079
-gulp.task('server', ['build'], function() {
-  gulp.src('./build')
-    .pipe($.webserver({
-      port: 8080,
-      host: '0.0.0.0',
-      fallback: 'index.html',
-      livereload: true,
-      open: true
-    }))
-  ;
-});
-
-// Builds your entire app once, without starting a server
-gulp.task('build', function(cb) {
-  sequence('clean', ['copy', 'copy:foundation', 'sass', 'uglify'], 'copy:templates', cb);
-});
-
-// Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['server'], function () {
-  // Watch Sass
-  gulp.watch(['./src/assets/scss/**/*', './scss/**/*'], ['sass']);
-
-  // Watch JavaScript
-  gulp.watch(['./src/assets/js/**/*', './js/**/*'], ['uglify:app']);
-
-  // Watch static files
-  gulp.watch(['./src/**/*.*', '!./src/templates/**/*.*', '!./src/assets/{scss,js}/**/*.*'], ['copy']);
-
-  // Watch app templates
-  gulp.watch(['./src/templates/**/*.html'], ['copy:templates']);
+gulp.task('default', () => {
+  return new Promise(resolve => {
+    dev = false;
+    runSequence(['clean', 'wiredep'], 'build', resolve);
+  });
 });
