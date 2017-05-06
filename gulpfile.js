@@ -145,7 +145,7 @@ gulp.task('serve:test', ['scripts'], () => {
 });
 
 gulp.task('build', [], (resolve) => {
-    runSequence('lint', ['scripts', 'styles', 'html', 'images'], 'extras', resolve);
+    runSequence(['scripts', 'styles', 'html', 'images'], 'extras', resolve);
 });
 
 gulp.task('default', () => {
