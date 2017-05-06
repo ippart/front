@@ -22,4 +22,4 @@ release:
 	git config user.email "$(USER_EMAIL)"; \
 	git add .; \
 	git commit -m "deployed to gh-pages"; \
-	git push --force --quiet "https://$(GH_TOKEN)@github.com/ippart/front.git" gh-pages:gh-pages;
+	git push --force --quiet "https://$(GH_TOKEN)@github.com/ippart/front.git" master:gh-pages;
