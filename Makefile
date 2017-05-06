@@ -2,26 +2,16 @@ NODE_MODULES_DIR = node_modules
 NODE_IMG = node:7.8-alpine
 
 $(NODE_MODULES_DIR): package.json
-	@docker run --rm -v $(CURDIR):/data -w /data \
-		morenstrat/foundation-cli:alpine-latest \
-		sh -c 'npm install --quiet && bower install --allow-root'
+	@docker run --rm -it -v $(CURDIR):/data -w /data $(NODE_IMG) npm install --quiet
 
-dep: $(NODE_MODULES_DIR)
+build: $(NODE_MODULES_DIR)
+	@docker run --rm -v $(CURDIR):/data -w /data $(NODE_IMG) npm run build
 
-start: dep
-	@docker run --rm -it \
-		-v $(CURDIR):/data \
-		-w /data \
-		-p 9020:9020 \
-		$(NODE_IMG) \
-		npm run start
+watch: clean $(NODE_MODULES_DIR)
+	@docker run -d --name demo -v $(CURDIR):/data -w /data -p 9000:9000 $(NODE_IMG) npm run serve
 
-build: dep
-	@docker run --rm -v $(CURDIR):/data -w /data morenstrat/foundation-cli:alpine-latest sh -c 'foundation build'
-
-watch: dep
-	@docker run --name demo -d -v $(CURDIR):/data -w /data -p 8080:8080 \
-		morenstrat/foundation-cli:alpine-latest sh -c 'foundation watch'
+clean:
+	@-docker rm -fv demo
 
 release:
 	@cd build; \

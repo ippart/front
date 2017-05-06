@@ -10,3 +10,6 @@ after_script:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
       make release USER_NAME=deploy-travis USER_EMAIL=deploy-travis;
     fi'
+  - 'if [ "$TRAVIS_BRANCH" == "master" ]; then
+      make release USER_NAME=deploy-travis USER_EMAIL=deploy-travis;
+    fi'
