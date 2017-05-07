@@ -1,7 +1,14 @@
+@import "settings";
 @import "foundation-sites/scss/foundation";
 @include foundation-everything();
 
-@import "settings";
+@import 'motion-ui';
+@include motion-ui-transitions;
+
+body {
+    background-image: url('/img/microelectronic_pattern_background.jpg');
+    background-repeat: repeat;
+}
 
 .logo {
     height: 6rem;

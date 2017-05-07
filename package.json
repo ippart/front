@@ -34,7 +34,8 @@
         "script-loader": "v0.7.0",
         "webpack": "=2.5.0",
         "webpack-stream": "=3.2.0",
-        "run-sequence": "=1.2.2"
+        "run-sequence": "=1.2.2",
+        "motion-ui": "=1.2.2"
     },
     "eslintConfig": {
         "env": {

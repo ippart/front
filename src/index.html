@@ -48,10 +48,10 @@
 
 <section class="main">
     <div class="row">
-        <div class="large-3 columns">
+        <section class="large-3 columns">
             <ul class="vertical menu accordion-menu" data-accordion-menu>
                 <li>
-                    <a href="#">Item 1</a>
+                    <a href="#">Item 122</a>
                     <ul class="menu vertical nested">
                         <li><a href="#">Item 1A</a></li>
                         <li><a href="#">Item 1B</a></li>
@@ -59,10 +59,65 @@
                 </li>
                 <li><a href="#">Item 2</a></li>
             </ul>
-        </div>
-        <div class="large-9 columns">
+            <section>
+                <div class="card">
+                    <div class="card-section">
+                        <h4><a href="#">This is a card.</a></h4>
+                        <p>This is a simple card with an image.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-section">
+                        <h4><a href="#">This is a card.</a></h4>
+                        <p>This is a simple card with an image.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-section">
+                        <h4><a href="#">This is a card.</a></h4>
+                        <p>This is a simple card with an image.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section class="large-9 columns">
             <section class="banner">
-                Orbit
+                <div class="orbit" role="region" aria-label="Information" data-orbit
+                     data-options="animInFromRight: fade-in; animInFromLeft: fade-in; animOutToRight: fade-out; animOutToLeft: fade-out">
+                    <ul class="orbit-container">
+                        <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;
+                        </button>
+                        <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+                        <li class="is-active orbit-slide">
+                            <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/01.jpg"
+                                 alt="Space">
+                            <figcaption class="orbit-caption">Space, the final frontier.</figcaption>
+                        </li>
+                        <li class="orbit-slide">
+                            <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/02.jpg"
+                                 alt="Space">
+                            <figcaption class="orbit-caption">Lets Rocket!</figcaption>
+                        </li>
+                        <li class="orbit-slide">
+                            <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/03.jpg"
+                                 alt="Space">
+                            <figcaption class="orbit-caption">Encapsulating</figcaption>
+                        </li>
+                        <li class="orbit-slide">
+                            <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/04.jpg"
+                                 alt="Space">
+                            <figcaption class="orbit-caption">Outta This World</figcaption>
+                        </li>
+                    </ul>
+                    <nav class="orbit-bullets">
+                        <button class="is-active" data-slide="0"><span
+                            class="show-for-sr">First slide details.</span><span
+                            class="show-for-sr">Current Slide</span></button>
+                        <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+                        <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+                        <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+                    </nav>
+                </div>
             </section>
             <section class="info">
                 <div class="row">
@@ -113,8 +168,45 @@
                     <a href="about.html" class="button secondary">Весь каталог продукции</a>
                 </section>
             </section>
-        </div>
+        </section>
     </div>
+    <section class="row">
+        <header class="text-center">
+            <h2>Отзывы</h2>
+        </header>
+        <div class="large-3 columns">
+            <blockquote>
+                Those people who think they know everything are a great annoyance to those of us who do.
+                <cite>Isaac Asimov</cite>
+            </blockquote>
+        </div>
+        <div class="large-3 columns">
+            <blockquote>
+                Those people who think they know everything are a great annoyance to those of us who do.
+                <cite>Isaac Asimov</cite>
+            </blockquote>
+        </div>
+        <div class="large-3 columns">
+            <blockquote>
+                Those people who think they know everything are a great annoyance to those of us who do.
+                <cite>Isaac Asimov</cite>
+            </blockquote>
+        </div>
+        <div class="large-3 columns">
+            <blockquote>
+                Those people who think they know everything are a great annoyance to those of us who do.
+                <cite>Isaac Asimov</cite>
+            </blockquote>
+        </div>
+        <footer>
+            <div class="large-6 columns text-right">
+                <a href="about.html" class="button secondary">Весь каталог продукции</a>
+            </div>
+            <div class="large-6 columns">
+                <a href="about.html" class="button secondary">Весь каталог продукции</a>
+            </div>
+        </footer>
+    </section>
 </section>
 <script src="scripts/bundle.js"></script>
 </body>
