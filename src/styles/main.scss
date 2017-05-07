@@ -5,6 +5,8 @@
 @import 'motion-ui';
 @include motion-ui-transitions;
 
+@import "ecommerce-hero";
+
 body {
     background-image: url('/img/microelectronic_pattern_background.jpg');
     background-repeat: repeat;
@@ -16,4 +18,16 @@ body {
 
 .uppercase {
     text-transform: uppercase;
+}
+
+.line-bottom {
+    margin-bottom: $global-margin;
+}
+
+.subscription {
+    background-color: $light-gray;
+}
+
+.footer {
+    background-color: $white;
 }
