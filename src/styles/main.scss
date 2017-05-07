@@ -336,4 +336,37 @@ testimonial
     }
 }
 
+/**
+Cart
+ */
+.cart {
+    color: $white;
+}
+
+.button-badge {
+    font-size: rem-calc(40);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    position: relative;
+    display: inline-block;
+    border-radius: .2rem;
+    transition: all ease 0.4s;
+}
+
+.button-badge:hover {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+    position: absolute;
+    bottom: 15px;
+    right: 11px;
+    font-size: rem-calc(10);
+    background-color: $white;
+    color: $grey-800;
+}
+
+.fa {
+    color: $primary-color;
+}
 
