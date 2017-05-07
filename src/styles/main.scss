@@ -1,5 +1,6 @@
 @import "settings";
 @import "foundation-sites/scss/foundation";
+
 @include foundation-everything();
 
 @import 'motion-ui';
@@ -10,6 +11,10 @@
 body {
     background-image: url('/img/microelectronic_pattern_background.jpg');
     background-repeat: repeat;
+}
+
+a {
+    font-family: 'Roboto Slab', serif;
 }
 
 .logo {
@@ -24,6 +29,15 @@ body {
     margin-bottom: $global-margin;
 }
 
+.header {
+    background-color: #283346;
+    color: $white;
+    .description {
+        text-transform: uppercase;
+        margin: $global-margin 0;
+    }
+}
+
 .subscription {
     background-color: $light-gray;
 }
@@ -31,3 +45,4 @@ body {
 .footer {
     background-color: $white;
 }
+
