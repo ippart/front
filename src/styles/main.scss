@@ -6,6 +6,8 @@
 @import 'motion-ui';
 @include motion-ui-transitions;
 
+@import "color";
+
 @import "ecommerce-hero";
 
 body {
@@ -35,6 +37,31 @@ a {
     .description {
         text-transform: uppercase;
         margin: $global-margin 0;
+    }
+}
+
+.main {
+    .menu {
+        background-color: $grey-200;
+        li {
+            border-bottom: rem-calc(1);
+            border-bottom-style: solid;
+            border-bottom-color: $grey-300;
+        }
+        li:hover {
+            background-color: $primary-color;
+        }
+        .nested {
+            li:hover {
+                background-color: $white;
+            }
+        }
+        li:last-child {
+            border: 0;
+        }
+        a {
+            color: $grey-800;
+        }
     }
 }
 

@@ -1,12 +1,13 @@
 // 1. Global
 // ---------
 @import 'foundation-sites/scss/util/util';
+@import "color";
 
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #f8bf45,
+  primary: $amber-A400,
   secondary: #767676,
   success: #3adb76,
   warning: #ffae00,
@@ -167,8 +168,8 @@ $accordion-content-padding: 1rem;
 // -----------------
 
 $accordionmenu-arrows: true;
-$accordionmenu-arrow-color: $primary-color;
-$accordionmenu-arrow-size: 6px;
+$accordionmenu-arrow-color: $dark-gray;
+$accordionmenu-arrow-size: 4px;
 
 // 9. Badge
 // --------
