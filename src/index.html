@@ -36,19 +36,33 @@
             right
         </div>
     </div>
+</header>
+<section class="find">
     <div class="row">
         <div class="large-3 columns">
-            Catalog
+            <div class="catalog">
+                <a href=""><img src="http://placehold.it/20x20"/>Категории каталога</a>
+            </div>
         </div>
         <div class="large-7 columns">
-            Find
+            <header class="hero-search-filter">
+                <div class="hero-search-filter-content">
+                    <form class="hero-search-filter-form" action="">
+                        <label for="findtext">Искать</label>
+                        <input id="findtext" class="hero-search-filter-form-find" type="text" />
+                        <div class="divider">&nbsp;</div>
+                        <label for="findlocate">Группа</label>
+                        <input id="findlocate" class="hero-search-filter-form-near" type="text" />
+                        <button class="button"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </header>
         </div>
         <div class="large-2 columns">
-            Cart
+            <div class="cart">Cart</div>
         </div>
     </div>
-</header>
-
+</section>
 <section class="main">
     <div class="row">
         <section class="large-3 columns">
@@ -356,7 +370,7 @@
             </section>
         </section>
         <section class="large-9 columns">
-            <section class="banner">
+            <section class="banner line-top">
                 <div class="orbit" role="region" aria-label="Information" data-orbit
                      data-options="animInFromRight: fade-in; animInFromLeft: fade-in; animOutToRight: fade-out; animOutToLeft: fade-out">
                     <ul class="orbit-container">
