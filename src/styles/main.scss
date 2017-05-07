@@ -71,5 +71,24 @@ a {
 
 .footer {
     background-color: $white;
+    padding: rem-calc(30) 0;
+    h6 {
+        text-transform: uppercase;
+        color: $light-blue-800;
+    }
+    a {
+        color: $blue-grey-800;
+        font-size: $small-font-size;
+    }
+    .logo-bottom {
+        width: rem-calc(170);
+        height: rem-calc(30);
+    }
+    .phone {
+        font-size: rem-calc(24);
+    }
+    .small-text {
+        font-size: $small-font-size;
+    }
 }
 
