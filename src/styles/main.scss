@@ -43,6 +43,12 @@ $header-bg-color: #283346;
         text-transform: uppercase;
         margin: $global-margin 0;
     }
+    .phone, .email {
+        font-size: rem-calc(20);
+    }
+    .phone-desc, .email-desc {
+        font-size: $small-font-size;
+    }
 }
 
 .find {
