@@ -27,7 +27,8 @@
 
 $margins: (
     zero: 0,
-    sm: rem-calc(10),
+    sm: rem-calc(5),
+    smx: rem-calc(10),
     md: rem-calc(15),
     lg: rem-calc(25),
     lgx: rem-calc(30),
@@ -39,13 +40,7 @@ $margins: (
 
 @include breakpoint(medium) {
     $margins: (
-        zero: 0,
-        sm: rem-calc(10),
-        md: rem-calc(15),
-        lg: rem-calc(25),
-        lgx: rem-calc(30),
-        lgxx: rem-calc(40),
-        lgxxx: rem-calc(50)
+     //@todo перебить если потребуеццо
     );
 
     @include margins-generate($margins);
@@ -53,13 +48,7 @@ $margins: (
 
 @include breakpoint(large) {
     $margins: (
-        zero: 0,
-        sm: rem-calc(10),
-        md: rem-calc(15),
-        lg: rem-calc(25),
-        lgx: rem-calc(30),
-        lgxx: rem-calc(40),
-        lgxxx: rem-calc(50)
+
     );
 
     @include margins-generate($margins);

@@ -97,12 +97,12 @@ gulp.task('extras', () => {
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('serve', () => {
-    runSequence(['clean'], ['styles', 'scripts'], () => {
+    runSequence(['clean'], ['styles', 'scripts'], 'html' , () => {
         browserSync.init({
             notify: false,
             port: 9000,
             server: {
-                baseDir: ['.tmp', 'src']
+                baseDir: ['.tmp', 'build', 'src']
             }
         });
 
@@ -110,7 +110,7 @@ gulp.task('serve', () => {
             'src/*.html',
             'src/images/**/*'
         ]).on('change', reload);
-
+        gulp.watch('src/*.html', ['html']);
         gulp.watch('src/styles/**/*.scss', ['styles']);
         gulp.watch('src/scripts/**/*.js', ['scripts']);
     });
