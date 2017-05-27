@@ -2,7 +2,7 @@
 
 header {
     h1 {
-        font-size: rem-calc(30);
+        font-size: rem-calc(36);
         margin-top: $global-margin;
         padding-top: $global-padding;
     }
@@ -14,4 +14,7 @@ header {
 
 .list-style-none {
     list-style: none;
+    li {
+        display: inline;
+    }
 }
