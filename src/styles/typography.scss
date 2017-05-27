@@ -1,0 +1,17 @@
+@import "settings";
+
+header {
+    h1 {
+        font-size: rem-calc(30);
+        margin-top: $global-margin;
+        padding-top: $global-padding;
+    }
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.list-style-none {
+    list-style: none;
+}

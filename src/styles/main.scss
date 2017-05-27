@@ -10,6 +10,13 @@
 
 @import "ecommerce-hero";
 
+@import "typography";
+
+@import "product";
+
+@import "position";
+
+
 body {
     background-image: url('/images/microelectronic_pattern_background.jpg');
     background-repeat: repeat;
@@ -23,18 +30,9 @@ a {
     height: 6rem;
 }
 
-.uppercase {
-    text-transform: uppercase;
-}
-
-.line-bottom {
-    margin-bottom: $global-margin;
-}
 .line-top {
     margin-top: $global-margin;
 }
-
-$header-bg-color: #283346;
 
 .header {
     background-color: $header-bg-color;
@@ -146,7 +144,6 @@ $header-bg-color: #283346;
         font-size: $small-font-size;
     }
 }
-
 
 /**
  Search
@@ -273,8 +270,9 @@ $card-product-hover-transition: all 0.2s ease;
 testimonial
  */
 .testimonial-footer {
-        background-color: $white;
+    background-color: $white;
 }
+
 .testimonial-slider-container {
     background: $white;
     padding: 1rem 1rem;

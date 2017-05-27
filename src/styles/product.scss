@@ -1,0 +1,44 @@
+@import "settings";
+@import "foundation-sites/scss/foundation";
+@import "color";
+@include foundation-everything();
+
+.product-image-gallery {
+    background-color: $white;
+    padding: 1.5rem;
+}
+
+.pdp-product-image {
+    margin-bottom: 20px;
+}
+
+.product-thumbs {
+    a {
+        background-color: $white;
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 0 !important;
+
+        img {
+            @include thumbnail;
+            border-radius: 3px;
+            width: 50px;
+            height: 50px;
+            border: none;
+        }
+    }
+    li {
+        display: inline;
+    }
+    list-style: none;
+}
+
+.tabs-title {
+    a {
+        color: $secondary-color;
+        font-size: $base-font-size;
+    }
+    a[aria-selected="true"] {
+        color: $header-bg-color;
+    }
+}

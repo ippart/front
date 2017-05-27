@@ -1,0 +1,66 @@
+@import "foundation-sites/scss/foundation";
+
+.block-center {
+    display: table;
+    margin: 0 auto;
+}
+
+.line-bottom {
+    margin-bottom: $global-margin;
+}
+
+@mixin margins-generate($margins) {
+    $types: left, top, bottom, right;
+    $types_class: l, t, b, r;
+    @each $name, $margin in $margins {
+        .-mg-#{$name} {
+            margin: #{$margin};
+        }
+        @each $type in $types {
+            $num: index($types, $type);
+            .-mg-#{nth($types_class, $num)}-#{$name} {
+                margin-#{$type}: $margin;
+            }
+        }
+    }
+}
+
+$margins: (
+    zero: 0,
+    sm: rem-calc(10),
+    md: rem-calc(15),
+    lg: rem-calc(25),
+    lgx: rem-calc(30),
+    lgxx: rem-calc(40),
+    lgxxx: rem-calc(50)
+);
+
+@include margins-generate($margins);
+
+@include breakpoint(medium) {
+    $margins: (
+        zero: 0,
+        sm: rem-calc(10),
+        md: rem-calc(15),
+        lg: rem-calc(25),
+        lgx: rem-calc(30),
+        lgxx: rem-calc(40),
+        lgxxx: rem-calc(50)
+    );
+
+    @include margins-generate($margins);
+}
+
+@include breakpoint(large) {
+    $margins: (
+        zero: 0,
+        sm: rem-calc(10),
+        md: rem-calc(15),
+        lg: rem-calc(25),
+        lgx: rem-calc(30),
+        lgxx: rem-calc(40),
+        lgxxx: rem-calc(50)
+    );
+
+    @include margins-generate($margins);
+}
