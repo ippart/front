@@ -18,16 +18,22 @@
 @import "cart";
 
 body {
-    background-image: url('/images/microelectronic_pattern_background.jpg');
-    background-repeat: repeat;
+    /*background-image: url('/images/microelectronic_pattern_background.jpg');
+    background-repeat: repeat;*/
 }
 
 a {
-    font-family: 'Roboto Slab', serif;
+    color: $primary;
+}
+a:hover {
+    color: $success;
+}
+a:visited {
+    color: $secondary;
 }
 
 .logo {
-    height: 6rem;
+    height: 5rem;
 }
 
 .line-top {
@@ -35,22 +41,20 @@ a {
 }
 
 .header {
-    background-color: $header-bg-color;
+    background-color: $blue-grey-900;
     color: $white;
     .description {
-        text-transform: uppercase;
         margin: $global-margin 0;
     }
-    .phone, .email {
-        font-size: rem-calc(20);
-    }
-    .phone-desc, .email-desc {
-        font-size: $small-font-size;
+    .description-small {
+        color: $success;
+        font-size: 0.9rem;
+        line-height: rem-calc(65);
     }
 }
 
 .find {
-    background-color: $primary-color;
+    background-color: $primary;
     .catalog {
         background-color: $secondary-color;
         height: rem-calc(80);
@@ -91,7 +95,7 @@ a {
             border-bottom-color: $grey-300;
         }
         li:hover {
-            background-color: $primary-color;
+            background-color: $success;
         }
         .nested {
             li:hover {
@@ -102,8 +106,11 @@ a {
             border: 0;
         }
         a {
-            color: $header-bg-color;
+            color: $body-font-color;
         }
+    }
+    nav {
+
     }
 }
 

@@ -1,11 +1,13 @@
 @import "settings";
 
-header {
-    h1 {
-        font-size: rem-calc(36);
-        margin-top: $global-margin;
-        padding-top: $global-padding;
-    }
+a {
+    color: $success;
+}
+a:hover {
+    color: $primary;
+}
+a:visited {
+    color: $secondary;
 }
 
 .uppercase {
